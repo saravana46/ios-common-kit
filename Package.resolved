@@ -1,0 +1,15 @@
+{
+  "originHash" : "e390a6cdf5e6ee55fd036e7daac4f8e53182a270e2bd28c3143b0af8634e9322",
+  "pins" : [
+    {
+      "identity" : "xcodeconfig",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AnasAlhasani/XcodeConfig",
+      "state" : {
+        "revision" : "23275cf963c036de35c20a84614c2473beb11229",
+        "version" : "1.0.2"
+      }
+    }
+  ],
+  "version" : 3
+}
