@@ -6,7 +6,10 @@ import PackageDescription
 let package = Package(
     name: "ios-common-kit",
     defaultLocalization: "en",
-    platforms: [.iOS(.v15)],
+    platforms: [
+        .iOS(.v15),
+        .macOS(.v12)
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -23,6 +26,9 @@ let package = Package(
         ),
     ],
     dependencies: [
+        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.6.1"),
+        .package(url: "https://github.com/hmlongco/Resolver.git", from: "1.1.2"),
+        .package(url: "https://github.com/relatedcode/ProgressHUD", from: "13.6.1"),
         .package(url: "https://github.com/AnasAlhasani/XcodeConfig", from: "1.0.1")
     ],
     targets: [
@@ -30,9 +36,6 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "ios-common-kit"
-        ),
-        .target(
-            name: "TrendCore"
         ),
         .target(
             name: "TrendConfiguration",
@@ -43,5 +46,21 @@ let package = Package(
                 )
             ]
         ),
+        .target(
+            name: "TrendCore",
+            dependencies: [
+                "TrendConfiguration",
+
+                .product(
+                    name: "Alamofire",
+                    package: "Alamofire"
+                ),
+
+                .product(
+                    name: "Resolver",
+                    package: "Resolver"
+                )
+            ]
+        )
     ]
 )
