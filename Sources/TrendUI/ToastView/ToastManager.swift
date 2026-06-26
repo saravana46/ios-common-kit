@@ -8,8 +8,10 @@
 import Combine
 import SwiftUI
 
-final class ToastManager: ObservableObject {
-    static let shared = ToastManager()
+public final class ToastManager: ObservableObject {
+    public static let shared = ToastManager()
+    public private(set) var configuration = ToastConfiguration()
+    public private(set) var icons = ToastIcons()
 
     private init() {}
 
@@ -18,7 +20,7 @@ final class ToastManager: ObservableObject {
 
     // MARK: - Show Toast
 
-    func show(_ toast: Toast) {
+    public func show(_ toast: Toast) {
         DispatchQueue.main.async {
             withAnimation {
                 self.toast = toast
@@ -35,6 +37,17 @@ final class ToastManager: ObservableObject {
                 }
             }
         }
+    }
+}
+
+public extension ToastManager {
+
+    func configure(_ configuration: ToastConfiguration) {
+        self.configuration = configuration
+    }
+
+    func configureIcons(_ icons: ToastIcons) {
+        self.icons = icons
     }
 }
 

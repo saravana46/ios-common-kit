@@ -7,26 +7,32 @@
 
 import SwiftUI
 
-struct LoaderView: View {
+public struct LoaderView: View {
     let message: String
 
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 16) {
             ProgressView()
                 .scaleEffect(1.3)
-                .tint(Color.infoColor)
+                .tint(
+                    LoaderManager.shared.configuration.indicatorColor
+                )
 
             Text(message)
-                .font(Font.system(size: 15, weight: .medium))
-                .foregroundColor(Color.textPrimary)
+                .font(.system(size: 15, weight: .medium))
+                .foregroundColor(
+                    LoaderManager.shared.configuration.textColor
+                )
         }
         .padding(.vertical, 24)
         .padding(.horizontal, 30)
-        .background(Color.cardBackgroundColor)
+        .background(
+            LoaderManager.shared.configuration.backgroundColor
+        )
         .overlay(
             RoundedRectangle(cornerRadius: 18)
                 .stroke(
-                    Color.border,
+                    LoaderManager.shared.configuration.borderColor,
                     lineWidth: 1
                 )
         )

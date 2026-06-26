@@ -42,20 +42,15 @@ public extension ToastStyle {
 public extension ToastStyle {
 
     var icon: Image {
-
         switch self {
-
-        case .error:
-            return TrendImages.errorIcon
-
-        case .warning:
-            return TrendImages.warningIcon
-
         case .success:
-            return TrendImages.successIcon
-
+            return ToastManager.shared.icons.success
+        case .error:
+            return ToastManager.shared.icons.error
+        case .warning:
+            return ToastManager.shared.icons.warning
         case .info:
-            return TrendImages.infoIcon
+            return ToastManager.shared.icons.info
         }
     }
 }
@@ -66,21 +61,27 @@ public struct ToastView: View {
     public var body: some View {
         HStack(spacing: 12) {
             toast.style.icon
-                .foregroundColor(toast.style.themeColor)
+                .foregroundColor(
+                    ToastManager.shared.configuration.iconColor ?? toast.style.themeColor
+                )
 
             Text(toast.message)
-                .foregroundColor(Color.textPrimary)
+                .foregroundColor(
+                    ToastManager.shared.configuration.textColor
+                )
                 .font(.system(size: 14, weight: .medium))
 
             Spacer()
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(Color.cardBackgroundColor)
+        .background(
+            ToastManager.shared.configuration.backgroundColor
+        )
         .overlay(
             RoundedRectangle(cornerRadius: 14)
                 .stroke(
-                    Color.border,
+                    ToastManager.shared.configuration.borderColor,
                     lineWidth: 1
                 )
         )

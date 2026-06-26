@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct LoaderModifier: ViewModifier {
+public struct LoaderModifier: ViewModifier {
     @ObservedObject var loaderManager = LoaderManager.shared
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         ZStack {
             content
                 .disabled(loaderManager.isLoading)
@@ -32,7 +32,7 @@ struct LoaderModifier: ViewModifier {
     }
 }
 
-extension View {
+public extension View {
     func loader() -> some View {
         modifier(LoaderModifier())
     }

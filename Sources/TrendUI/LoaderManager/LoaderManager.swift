@@ -7,26 +7,31 @@
 
 import SwiftUI
 
-final class LoaderManager: ObservableObject {
-    static let shared = LoaderManager()
+public final class LoaderManager: ObservableObject {
+
+    public static let shared = LoaderManager()
+
+    public private(set) var configuration = LoaderConfiguration()
 
     private init() {}
 
-    @Published var isLoading = false
-    @Published var message = "Loading..."
+    @Published public var isLoading = false
+    @Published public var message = "Loading..."
 
-    // MARK: - Show Loader
+    public func configure(
+        _ configuration: LoaderConfiguration
+    ) {
+        self.configuration = configuration
+    }
 
-    func show(message: String = "Loading...") {
+    public func show(message: String = "Loading...") {
         DispatchQueue.main.async {
             self.message = message
             self.isLoading = true
         }
     }
 
-    // MARK: - Hide Loader
-
-    func hide() {
+    public func hide() {
         DispatchQueue.main.async {
             self.isLoading = false
         }
