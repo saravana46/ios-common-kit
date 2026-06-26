@@ -24,11 +24,14 @@ let package = Package(
             name: "TrendConfiguration",
             targets: ["TrendConfiguration"]
         ),
+        .library(
+            name: "TrendUI",
+            targets: ["TrendUI"]
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.6.1"),
         .package(url: "https://github.com/hmlongco/Resolver.git", from: "1.1.2"),
-        .package(url: "https://github.com/relatedcode/ProgressHUD", from: "13.6.1"),
         .package(url: "https://github.com/AnasAlhasani/XcodeConfig", from: "1.0.1")
     ],
     targets: [
@@ -61,6 +64,9 @@ let package = Package(
                     package: "Resolver"
                 )
             ]
+        ),
+        .target(
+            name: "TrendUI"
         )
     ]
 )
