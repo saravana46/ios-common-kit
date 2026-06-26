@@ -66,7 +66,13 @@ let package = Package(
             ]
         ),
         .target(
-            name: "TrendUI"
+            name: "TrendUI",
+            dependencies: [
+                "TrendCore"
+            ],
+            resources: [
+                .process("Assets")
+            ]
         )
     ]
 )
